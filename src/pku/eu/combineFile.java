@@ -33,6 +33,18 @@ public class combineFile {
             }
         }
     }
+	
+	// create dir
+	public bool mkDir(String path) throws IOException {
+        File dir = new File(path);
+        if (dir.exists()) {
+			return true;
+        }else {
+			dir.mkdirs();
+			return true;
+		}
+		return false;
+    }
 
     public void copyFile1(String src, String dest) throws IOException {
         FileInputStream in = new FileInputStream(src);
