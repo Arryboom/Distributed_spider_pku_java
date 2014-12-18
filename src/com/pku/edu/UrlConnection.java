@@ -22,6 +22,23 @@ public class UrlConnection {
 		 br.close();
 	}
 	
+	// optimize: print error
+	public  void getInput() {
+		URL url = new URL("www.zhibo8.cc");
+		BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+		String line = null;
+		try {
+			while(null != (line = br.readLine()))
+			{
+			 System.out.println(line);
+			}
+			br.close();
+		}catch (Exception e) {
+			System.out.println("get input error");
+		}
+		 
+	}
+	
 	public  void getInputAndOutput(String[] args) throws Exception {
 		URL url = new URL("www.zhibo8.cc");
 		URLConnection conn = url.openConnection();
