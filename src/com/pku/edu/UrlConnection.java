@@ -55,5 +55,28 @@ public class UrlConnection {
 		is.close();
 		os.close();
 	}
+	
+	// optimize: print error
+	public  void getInputAndOutputNew(String[] args) {
+		URL url = new URL("www.zhibo8.cc");
+		URLConnection conn = url.openConnection();
+		
+		InputStream is = conn.getInputStream();
+		OutputStream os = conn.getOutputStream();
+		
+		try {
+			byte[] buffer = new byte[2048];
+			int length = 0;
+			while(-1 != (length = is.read(buffer,0,buffer.length)))
+			{
+				os.write(buffer,0,length);
+			}
+			is.close();
+			os.close();
+		}catch(Exception e) {
+			System.out.println("get inputAndOutput error");
+		}
+		
+	}
 }
 
