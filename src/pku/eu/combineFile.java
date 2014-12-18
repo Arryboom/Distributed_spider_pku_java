@@ -50,4 +50,23 @@ public class combineFile {
         out.close();
 
     }
+	
+	// delete file1
+	public bool delFile1(String src, String dest) throws IOException {
+		// get file
+        FileInputStream in = new FileInputStream(src);
+        File file = new File(dest);
+		// delete file or throw error
+        try {
+			if (!file.exists())
+				return true;
+			else 
+				file.delete();
+			return true;
+		}catch(Exception e) {
+			System.out.println("delete file1 error");
+			return false;
+		}
+		
+    }
 }
