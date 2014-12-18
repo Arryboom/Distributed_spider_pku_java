@@ -23,7 +23,7 @@ public class UrlConnection {
 	}
 	
 	// optimize: print error
-	public  void getInput() {
+	public void getInputNew() {
 		URL url = new URL("www.zhibo8.cc");
 		BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
 		String line = null;
