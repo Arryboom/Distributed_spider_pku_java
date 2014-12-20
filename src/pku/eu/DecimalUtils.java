@@ -31,4 +31,14 @@ public class DecimalUtils {
 		Double result = df.format(d);
 		return result;
 	}
+	
+	// format date
+	public static Date formatDate(Date d) {
+		if (d == null) {
+		  return 0.0;
+		}
+		SimpleDateFormat s = new SimpleDateFormat("yyyy/MM/dd HH:mm a",Locale.ENGLISH);
+		Date result = s.format(d);
+		return result;
+	}
 }
