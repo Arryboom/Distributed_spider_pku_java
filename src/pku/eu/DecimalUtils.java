@@ -22,8 +22,8 @@ public class DecimalUtils {
 		return result;
 	}
 	
-	// format 
-	public static Double format(Double d) {
+	// format double
+	public static Double formatDouble(Double d) {
 		if (d == null) {
 		  return 0.0;
 		}
