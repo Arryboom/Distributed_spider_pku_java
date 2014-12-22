@@ -22,7 +22,7 @@ public class UrlConnection {
 		 br.close();
 	}
 	
-	// optimize: print error
+	
 	public void getInputNew() {
 		URL url = new URL("www.zhibo8.cc");
 		BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -39,24 +39,6 @@ public class UrlConnection {
 		 
 	}
 	
-	public  void getInputAndOutput(String[] args) throws Exception {
-		URL url = new URL("www.zhibo8.cc");
-		URLConnection conn = url.openConnection();
-		
-		InputStream is = conn.getInputStream();
-		OutputStream os = conn.getOutputStream();
-		
-		byte[] buffer = new byte[2048];
-		int length = 0;
-		while(-1 != (length = is.read(buffer,0,buffer.length)))
-		{
-			os.write(buffer,0,length);
-		}
-		is.close();
-		os.close();
-	}
-	
-	// optimize: print error
 	public  void getInputAndOutputNew(String[] args) {
 		URL url = new URL("www.zhibo8.cc");
 		URLConnection conn = url.openConnection();
@@ -78,5 +60,24 @@ public class UrlConnection {
 		}
 		
 	}
+	public  void getInputAndOutput(String[] args) throws Exception {
+		URL url = new URL("www.zhibo8.cc");
+		URLConnection conn = url.openConnection();
+		
+		InputStream is = conn.getInputStream();
+		OutputStream os = conn.getOutputStream();
+		
+		byte[] buffer = new byte[2048];
+		int length = 0;
+		while(-1 != (length = is.read(buffer,0,buffer.length)))
+		{
+			os.write(buffer,0,length);
+		}
+		is.close();
+		os.close();
+	}
+	
+
+
 }
 
