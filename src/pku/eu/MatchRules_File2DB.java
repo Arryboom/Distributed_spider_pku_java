@@ -81,6 +81,33 @@ class MyRunnable2 implements Runnable
 			}
 		}
 	}
+	
+	// get file
+	public static void getFile() {
+		int i=1;
+		String path="rule2";
+		try {
+			File file=new File(path+".txt");
+			File newfile=new File("rules1.txt");
+			newfile.createNewFile();
+			if(!file.exists()||file.isDirectory())
+				throw new FileNotFoundException();
+			BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+			BufferedWriter pw=new BufferedWriter(new FileWriterWithEncoding(newfile, "UTF-8",true));
+			String temp=null;
+			while ((temp=br.readLine())!=null) {
+				i++;
+				System.out.println(temp);
+				//pw.append(temp);
+				pw.write(temp);
+				pw.newLine();
+			}
+			pw.flush();
+			System.out.println(i);
+		}catch(Exception e){
+			System.out.println("file resource error");
+		}
+	}
 
 	//从数据库中获得规则数据
 	public static ResultSet getRule(String ruleTable)
@@ -138,6 +165,41 @@ class MyRunnable2 implements Runnable
 
 	}
 
+	// delete data
+	public static void delete(HashMap<String, Integer> hm, String ruleTable)
+	{
+
+		DBUtil util = new DBUtil();
+		Connection conn = util.getConnection();
+
+		PreparedStatement pstmt = null;
+
+		Iterator<Entry<String, Integer>> it = hm.entrySet().iterator();
+		String str = null;
+		int count = 0;
+
+		while (it.hasNext())
+		{
+			Entry<String, Integer> entry = (Entry<String, Integer>) it.next();
+			str = entry.getKey();
+			count = entry.getValue();
+
+			String insert = "delete " + ruleTable + " where (str, count) values (?,?)";
+			try
+			{
+				pstmt = conn.prepareStatement(insert);
+				pstmt.setString(1, str);
+				pstmt.setInt(2, count);
+				pstmt.executeUpdate();
+			}
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+
+	}
+	
 	@Override
 	public void run()
 	{
