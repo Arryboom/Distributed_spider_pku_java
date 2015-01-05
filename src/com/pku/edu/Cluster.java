@@ -1,4 +1,4 @@
-package cluster.cn.edu.pku.ss;
+﻿package cluster.cn.edu.pku.ss;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +14,21 @@ public class Cluster{
      List<Integer> CurrentMembership = new ArrayList<Integer>();
      double[] Mean;         // 该聚类的中心
 
+    // 优化聚类均值计算算法
+    public void calculateMean(double[][] coordinates) {
+        int currentMemberLength = CurrentMembership.size(); 
+        for (int i = 0; i < currentMemberLength; i++){
+            double[] coord = coordinates[CurrentMembership.get(i)];
+            int coordLength = coord.length;
+            for (int j = 0; j < coordLength; j++){
+                Mean[j] += coord[j];
+            }
+            int meanLength = Mean.length;
+            for (int k = 0; k < meanLength; k++){
+                Mean[k] /= coordLength;
+            }
+        }
+    }
     // 该方法计算聚类对象的均值
     public void UpdateMean(double[][] coordinates) {
         // 根据 mCurrentMembership 取得原始资料点对象 coord ，该对象是 coordinates 的一个子集；
@@ -29,5 +44,7 @@ public class Cluster{
             }
         }
     }
+    
+
 }
 

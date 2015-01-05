@@ -117,6 +117,28 @@ public class BatchDownload {
             i++;
         }
     }
+	
+	// optimize: return image file list
+	private static List downloadImages(StringBuffer pageContents) throws MalformedURLException, IOException {
+
+        StringBuffer page = pageContents;
+
+        List<String> imgUrls = getImageUrls(page);
+
+        List<File> fileList = new ArrayList<File>();
+        String imgSaveDir = "E:";
+        int i = 1;
+        for (String url : imgUrls) {
+            String fileName = url.substring(url.lastIndexOf("/") + 1);
+            File file = downloadFile(url, imgSaveDir + "\\" + fileName);
+            System.out.println(file.getPath() + " ������ɣ�");
+            fileList.add(file);
+            i++;
+        }
+		
+		return fileList;
+    }
+	
     public static List<String> getImageUrls(StringBuffer html) {
         List<String> result = new ArrayList<String>();
 

@@ -40,5 +40,31 @@ public class fileResource {
 	        pw.flush();
 	        System.out.println(i);
 	}
-
+	
+	// optimize: change to method
+	public static void getFile() {
+		int i=1;
+		String path="rule2";
+		try {
+			File file=new File(path+".txt");
+			File newfile=new File("rules1.txt");
+			newfile.createNewFile();
+			if(!file.exists()||file.isDirectory())
+				throw new FileNotFoundException();
+			BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+			BufferedWriter pw=new BufferedWriter(new FileWriterWithEncoding(newfile, "UTF-8",true));
+			String temp=null;
+			while ((temp=br.readLine())!=null) {
+				i++;
+				System.out.println(temp);
+				//pw.append(temp);
+				pw.write(temp);
+				pw.newLine();
+			}
+			pw.flush();
+			System.out.println(i);
+		}catch(Exception e){
+			System.out.println("file resource error");
+		}
+	}
 }

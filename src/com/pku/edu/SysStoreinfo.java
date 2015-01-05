@@ -26,6 +26,11 @@ public class SysStoreinfo implements Serializable {
      * storename:
      */
     private String storename;
+	
+	/**
+     * groupname:
+     */
+    private String groupname;
 
     public SysStoreinfo() {
         super();
@@ -65,6 +70,15 @@ public class SysStoreinfo implements Serializable {
     @Column(name = "storename", length = 64, nullable = false)
     public String getStorename() {
         return storename;
+    }
+	
+	public void setGroupname(String groupname) {
+        this.groupname = groupname;
+    }
+
+    @Column(name = "groupname", length = 64, nullable = false)
+    public String getGroupname() {
+        return groupname;
     }
 
     public String toString() {

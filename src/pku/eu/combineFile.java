@@ -33,6 +33,18 @@ public class combineFile {
             }
         }
     }
+	
+	// create dir
+	public bool mkDir(String path) throws IOException {
+        File dir = new File(path);
+        if (dir.exists()) {
+			return true;
+        }else {
+			dir.mkdirs();
+			return true;
+		}
+		return false;
+    }
 
     public void copyFile1(String src, String dest) throws IOException {
         FileInputStream in = new FileInputStream(src);
@@ -49,5 +61,24 @@ public class combineFile {
         in.close();
         out.close();
 
+    }
+	
+	// delete file1
+	public bool delFile1(String src, String dest) throws IOException {
+		// get file
+        FileInputStream in = new FileInputStream(src);
+        File file = new File(dest);
+		// delete file or throw error
+        try {
+			if (!file.exists())
+				return true;
+			else 
+				file.delete();
+			return true;
+		}catch(Exception e) {
+			System.out.println("delete file1 error");
+			return false;
+		}
+		
     }
 }
